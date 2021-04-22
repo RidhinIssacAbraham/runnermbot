@@ -31,5 +31,5 @@ jobs:
          run: |
            sudo git clone https://github.com/issacabraham-git/callsmusic-1.git 
            cd callsmusic-1
-           pip install -U -r requirements.txt
-           python -m callsmusic
+           sudo docker build -t musicplayer .
+           sudo docker run --env-file example.env musicplayer
