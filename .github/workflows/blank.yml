@@ -1,0 +1,35 @@
+name: setting up environment
+
+on:
+#  release:
+#    types: [published]
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - '.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+  watch:
+    types: [started]
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@main
+
+       - name: initialization
+         run: |
+           sudo apt install expect -y
+           sudo apt install python3
+           
+       - name: Syncing up the repo and starting up the docker
+         run: |
+           sudo git clone https://github.com/issacabraham-git/callsmusic-1.git 
+           cd callsmusic-1
+           pip install -U -r requirements.txt
+           python -m callsmusic
