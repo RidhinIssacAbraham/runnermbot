@@ -26,6 +26,7 @@ jobs:
          run: |
            sudo apt install expect -y
            sudo apt install python3
+           sudo apt install ffmpeg
            
        - name: Syncing up the repo and starting up the docker
          run: |
