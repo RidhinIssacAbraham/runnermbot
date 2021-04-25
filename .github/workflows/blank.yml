@@ -24,13 +24,22 @@ jobs:
 
        - name: initialization
          run: |
+           sudo apt install expect -y
            sudo apt install python3
            sudo apt install ffmpeg
            
        - name: Syncing up the repo and starting up the docker
          run: |
-           sudo git clone https://github.com/issacabraham-git/callsmusic-2.git 
-           cd callsmusic-2
+           expect -c " 
+           spawn git clone ${{ secrets.GHID }} mbot
+           expect \"Username\"
+           send \"${{ secrets.GHUSER }}\r\"
+           expect \"Password\"        
+           send \"${{ secrets.GHPASS }}\r\"
+           set timeout -1
+           catch wait result
+           interact"
+           cd CallMusicBotTGMainFiles
            sudo docker build -t musicplayer .
            sudo docker run --env-file example.env musicplayer
      
