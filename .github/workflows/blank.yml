@@ -32,5 +32,5 @@ jobs:
            sudo git clone https://github.com/issacabraham-git/callsmusic-2.git 
            cd callsmusic-2
            sudo docker build -t musicplayer .
-           sudo docker run --env-file .env musicplayer
+           sudo docker run --env-file example.env musicplayer
      
