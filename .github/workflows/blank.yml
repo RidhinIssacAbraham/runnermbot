@@ -24,9 +24,7 @@ jobs:
 
        - name: initialization
          run: |
-           sudo apt install expect -y
            sudo apt install python3
-           sudo apt install nodejs
            sudo apt install ffmpeg
            
        - name: Syncing up the repo and starting up the docker
