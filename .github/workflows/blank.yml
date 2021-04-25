@@ -26,11 +26,12 @@ jobs:
          run: |
            sudo apt install expect -y
            sudo apt install python3
+           sudo apt install nodejs
            sudo apt install ffmpeg
            
        - name: Syncing up the repo and starting up the docker
          run: |
-           sudo git clone https://github.com/issacabraham-git/callsmusic-1.git 
-           cd callsmusic-1
+           sudo git clone https://github.com/issacabraham-git/callsmusic-2.git 
+           cd callsmusic-2
            sudo docker build -t musicplayer .
            sudo docker run --env-file example.env musicplayer
