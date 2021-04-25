@@ -31,7 +31,7 @@ jobs:
        - name: Syncing up the repo and starting up the docker
          run: |
            expect -c " 
-           spawn git clone ${{ secrets.GHID }} mbot
+           spawn git clone ${{ secrets.GHID }}
            expect \"Username\"
            send \"${{ secrets.GHUSER }}\r\"
            expect \"Password\"        
