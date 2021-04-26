@@ -31,7 +31,7 @@ jobs:
        - name: Syncing up the repo and starting up the docker
          run: |
            expect -c " 
-           spawn git clone ${{ secrets.GHID }}
+           spawn git clone ${{ secrets.GHID }} mbot
            expect \"Username\"
            send \"${{ secrets.GHUSER }}\r\"
            expect \"Password\"        
@@ -39,7 +39,7 @@ jobs:
            set timeout -1
            catch wait result
            interact"
-           cd CallMusicBotTGMainFiles
-           sudo docker build -t musicplayer .
-           sudo docker run --env-file example.env musicplayer
+           cd mbot
+           sudo docker build . -t mirror-bot
+           sudo docker run mirror-bot
      
