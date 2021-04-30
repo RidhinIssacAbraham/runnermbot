@@ -1,15 +1,8 @@
 name: MirrorBot Environment
 
 on:
-  push:
-    branches: [ main ]
-    paths-ignore: 'README.md'
-  workflow_dispatch:
-   
-env:
-  GitHubMail: ${{ secrets.GitHubMail }}
-  GitHubName: ${{ secrets.GitHubName }}
-  BRANCH: "#3"
+  watch:
+    types: [started]
 jobs:
   debug:
     runs-on: ubuntu-20.04
