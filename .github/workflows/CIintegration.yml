@@ -1,35 +1,31 @@
-name: setting up environment
+name: MirrorBot Environment
 
 on:
-#  release:
-#    types: [published]
-#  push:
-#    branches:
-#      - main
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
-    
-
+  push:
+    branches: [ main ]
+    paths-ignore: 'README.md'
+  workflow_dispatch:
+   
+env:
+  GitHubMail: ${{ secrets.GitHubMail }}
+  GitHubName: ${{ secrets.GitHubName }}
+  BRANCH: "#3"
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  debug:
+    runs-on: ubuntu-20.04
 
     steps:
-       - name: Checkout
-         uses: actions/checkout@main
+        - name: Checkout
+          uses: actions/checkout@main
 
-       - name: initialization
-         run: |
+        - name: initialization
+          run: |
            sudo apt install expect -y
            sudo apt install python3
            sudo apt install ffmpeg
            
-       - name: Syncing up the repo and starting up the docker
-         run: |
+        - name: Syncing up the repo and starting up the docker
+          run: |
            expect -c " 
            spawn git clone ${{ secrets.GHID }} mbot
            expect \"Username\"
